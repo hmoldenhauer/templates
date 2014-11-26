@@ -1,0 +1,40 @@
+\documentclass[
+	bibliography=totoc,
+	captions=tableheading,
+	titlepage=firstiscover,
+	twoside,
+]{scrartcl}
+
+\input{tex/header.tex}
+
+\subject{}
+\title{Title of the given thesis which might be as long as the title stated here}
+\author{
+	Author%
+	\texorpdfstring{
+		\\
+		\href{mailto:author@tu-dortmund.de}{author@tu-dortmund.de}
+	}{}
+}
+\date{Year}
+\publishers{TU Dortmund – Fakultät Physik}
+\lowertitleback{
+	1. reviewer:\\[1em]
+	2. reviewer:\\[1em]
+	\\[2em]
+	Date of Submission: dd. month year
+}
+
+\begin{document}
+\pagenumbering{Roman}
+\maketitle
+\tableofcontents
+\newpage
+
+\setcounter{page}{0}
+\pagenumbering{arabic}
+\input{content/introduction.tex}
+
+\printbibliography
+
+\end{document}
