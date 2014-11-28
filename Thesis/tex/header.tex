@@ -57,7 +57,14 @@
 \usepackage{booktabs}
 
 % bibliography
-\usepackage{biblatex}
+\usepackage[
+	maxalphanames=1,	% only first Author is cited
+	style=alphabetic,	% alphabetic style
+]{biblatex}
+\renewcommand*{\labelalphaothers}{}		% rm + sign after citation
+						% for multiple authors
+\renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}	% last name in small caps
+
 \addbibresource{tex/lit.bib}
 
 % hyperlinks in document
