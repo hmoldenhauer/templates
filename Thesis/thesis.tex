@@ -1,8 +1,9 @@
 \documentclass[
-	bibliography=totoc,
-	captions=tableheading,
-	titlepage=firstiscover,
-	twoside,
+	bibliography=totoc,	% bibliography to table of contents
+	captions=tableheading,	% captions on top of tables
+	titlepage=firstiscover,	% titlepage
+	twoside,		% tow sided layout
+	headsepline=true,	% add a head separation line
 ]{scrbook}
 
 \input{tex/header.tex}
@@ -41,6 +42,6 @@
 
 \newpage
 \nocite{*}
-\printbibliography%[title=Bibliography]
+\printbibliography
 
 \end{document}

@@ -1,3 +1,6 @@
+% set some KOMA-Options
+\setkomafont{pageheadfoot}{}	% plain text in pageheadfoot
+
 % fix LaTeX2e
 \usepackage{fixltx2e}
 % warning for compiling
@@ -66,6 +69,9 @@
 \renewcommand*{\mkbibnamelast}[1]{\textsc{#1}}	% last name in small caps
 
 \addbibresource{tex/lit.bib}
+
+% package to create blindtext
+\usepackage{blindtext}
 
 % hyperlinks in document
 \usepackage[
