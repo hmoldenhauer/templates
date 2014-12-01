@@ -3,7 +3,7 @@
 	captions=tableheading,
 	titlepage=firstiscover,
 	twoside,
-]{scrartcl}
+]{scrbook}
 
 \input{tex/header.tex}
 
@@ -13,7 +13,7 @@
 	submitted in partial fulfillment of\\
 	the requirements for the degree of\\[1.5em]
 	ACADEMIC TITLE\\[1.5em]
-	to the Faculty of Physics\\
+	to the Faculty of WHICH EVER SUBJECT\\
 	UNIVERSITY, COUNTRY\\[5em]
 	by\\[1em]
 	NAME OF THE AUTHOR\\[1.5em]
@@ -34,9 +34,13 @@
 \setcounter{page}{0}
 \pagenumbering{arabic}
 \input{content/01-introduction.tex}
+\input{content/02-theory.tex}
+\input{content/03-experimental_methods.tex}
+\input{content/04-results.tex}
+\input{content/05-summary.tex}
 
 \newpage
 \nocite{*}
-\printbibliography
+\printbibliography%[title=Bibliography]
 
 \end{document}
