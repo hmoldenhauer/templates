@@ -15,6 +15,9 @@
 \usepackage{amssymb}
 \usepackage{mathtools}
 
+% euro symbol
+\usepackage[official]{eurosym}
+
 % font packages
 \usepackage{fontspec}
 \defaultfontfeatures{Ligatures=TeX}
@@ -30,6 +33,9 @@
 \setmathfont{Latin Modern Math}
 \setmathfont[range={\mathscr, \mathbfscr}]{XITS Math}
 
+% enable justification
+\usepackage{ragged2e}
+
 % correct quotes
 \usepackage[autostyle]{csquotes}
 
@@ -38,6 +44,7 @@
 	locale=DE,			% locale selection
 	separate-uncertainty=true,	% errors with \pm
 	per-mode=symbol-or-fraction,	% m/s in text, factions elsewise
+	%range-phrase={{ bis }},		% change to to bis if changing language to DE
 ]{siunitx}
 
 % nice fractions in text
@@ -48,13 +55,46 @@
 	labelfont=bf,		% bold captions
 	font=small,		% smaller font as in document
 	width=0.9\textwidth,	% reduce maximal caption width
+	format=plain,		% no indention in captions
+  labelsep=space,		% space instead of colon and space
 ]{caption}
 
 % subfigure, subtable, subref
-\usepackage{subcaption}
+\usepackage[
+	labelformat=simple,	% no parenthesis in label
+]{subcaption}
+
+\makeatletter
+% get space between figure reference and subfigure reference
+\renewcommand\p@subfigure{\thefigure\,}
+% get parenthesis
+\renewcommand\thesubfigure{(\alph{subfigure})}
+\DeclareCaptionLabelFormat{mysublabelfmt}{\alph{sub\@captype}}
+
+% get space between table reference and subtable reference
+\renewcommand\p@subtable{\thetable\,}
+% get parenthesis
+\renewcommand\thesubtable{(\alph{subtable})}
+\makeatother
+
+% get bold references in captions
+\DeclareCaptionLabelFormat{bold}{\textbf{#2}}
+\captionsetup{subrefformat=bold}
+
+% use threeparttable
+\usepackage{threeparttable}
 
 % use graphics in document
 \usepackage{graphicx}
+
+% use encircled numbers
+\usepackage{tikz}
+
+\DeclareRobustCommand{\circled}[1]{\tikz[baseline=(char.base)]{%
+            \node[shape=circle,draw,very thick,inner sep=1pt] (char) {#1};}}
+
+% floating figures
+\usepackage{floatflt}
 
 % nice tables
 \usepackage{booktabs}
@@ -72,8 +112,30 @@
 
 \addbibresource{tex/lit.bib}
 
+% bold volume numbers
+\DeclareFieldFormat*{volume}{\mkbibbold{#1}}
+\DeclareFieldFormat*{number}{\mkbibbold{#1}}
+
 % package to create blindtext
 \usepackage{blindtext}
+
+% use todonotes in latex
+\usepackage[
+	disable,	% comment or uncomment to remove all todonodes
+]{todonotes}
+
+% enable different enumeration
+\usepackage{enumerate}
+
+% nice fractions in text
+\usepackage{nicefrac}
+
+% inkscapes LaTeX export function
+% and to integrate the *.pdf_tex to the document
+\usepackage{import}
+
+% enable \FloatBarrier
+\usepackage{placeins}
 
 % hyperlinks in document
 \usepackage[
@@ -81,6 +143,33 @@
 	pdfusetitle,
 	pdfcreator={},
 	pdfproducer={},
+	pdfauthor={},
 ]{hyperref}
 % bookmarks in pdf
 \usepackage{bookmark}
+
+% glossary in pdf
+\usepackage[
+	xindy,		% correct ordering
+	toc,		% display glossaries in toc
+	%nonumberlist,	% don't display page number list
+]{glossaries}
+
+% file where all glossary entries are saved in
+\input{tex/glossaries.tex}
+
+% make it less common to give a figure its own page
+\renewcommand{\floatpagefraction}{.9}
+
+% bold vectors
+\renewcommand{\vec}[1]{\mathbfit{#1}}
+
+% define value with error and unit
+\newcommand{\errorval}[3]{\ensuremath{(\num{#1}\,\pm\,\num{#2})\,\si{#3}}}
+
+% define nice quote
+\setkomafont{dictumtext}{\itshape\small}
+\setkomafont{dictumauthor}{\normalfont}
+\renewcommand*\dictumwidth{\linewidth}
+\renewcommand*\dictumauthorformat[1]{--- #1}
+\renewcommand*\dictumrule{}

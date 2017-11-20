@@ -4,6 +4,10 @@
 	titlepage=firstiscover,	% titlepage
 	twoside,		% tow sided layout
 	headsepline=true,	% add a head separation line
+	chapterprefix=true,	% add chapter prefix at the beginning of each chapter
+	numbers=noenddot,	% remove dot behind chapters, sections, etc
+	DIV=13,			% bigger type area
+	BCOR=12mm,		% correct for binding
 ]{scrbook}
 
 \input{tex/header.tex}
@@ -27,13 +31,13 @@
 }
 
 \begin{document}
+
+\frontmatter
 \pagenumbering{Roman}
 \maketitle
 \tableofcontents
-\newpage
 
-\setcounter{page}{0}
-\pagenumbering{arabic}
+\mainmatter
 \input{content/01-introduction.tex}
 \input{content/02-theory.tex}
 \input{content/03-experimental_methods.tex}
@@ -41,7 +45,21 @@
 \input{content/05-summary.tex}
 
 \newpage
-\nocite{*}
+% reference some sources that are not referenced in the document
+\nocite{
+	Lamport86,	% author of LaTeX
+}
 \printbibliography
+
+\newpage
+
+%\listoftodos
+\begin{appendix}
+	\input{appendix/stuff.tex}
+	%\printglossaries
+\end{appendix}
+
+\input{tex/acknowledgments.tex}
+\input{tex/affirmation.tex}
 
 \end{document}

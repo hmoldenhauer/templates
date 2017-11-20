@@ -1,0 +1,29 @@
+% define some glossaries
+
+% glossary of symbols
+\newglossary{symbols}{sym}{sbl}{List of Symbols}
+
+%glossary of acronyms
+\newglossary{acronyms}{acr}{acn}{List of Abbreviations}
+
+\setglossarystyle{long3col}
+\makeglossaries
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% all symbols
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newglossaryentry{B}{
+	type=symbols,
+	name={\ensuremath{B}},
+	sort=BMagneticfield,
+	description={magnetic field},
+}
+
+\newglossaryentry{X}{
+	type=acronyms,
+	name=X,
+	description={exciton},
+	first={exciton (X)},
+	plural={excitons},
+}
